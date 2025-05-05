@@ -18,10 +18,12 @@ def generate_response(uploaded_file, openai_api_key, query_text):
         # Select embeddings
         embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
         # Create a vectorstore from documents
-        db = FAISS.from_documents(
+        db = Chroma.from_documents(
             documents=texts,
-            embedding=embeddings
+            embedding=embeddings,
+            persist_directory=None  # This keeps it in-memory
         )
+
         # Create retriever interface
         retriever = db.as_retriever()
         # Create QA chain

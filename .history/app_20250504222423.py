@@ -22,6 +22,8 @@ def generate_response(uploaded_file, openai_api_key, query_text):
             documents=texts,
             embedding=embeddings
         )
+
+
         # Create retriever interface
         retriever = db.as_retriever()
         # Create QA chain
